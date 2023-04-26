@@ -8,7 +8,7 @@ on:
   push:
     branches: [master]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
@@ -27,22 +27,17 @@ jobs:
       - name: Install dependencies 📦
         #Using npm ci is generally faster than running npm install
         run: |
-          cd react-testing-app1
           yarn ci
       - name: Build the app 🏗
         run: |
-          cd react-testing-app1
           yarn build
       - name: Run component tests 🔸
         run: |
-          cd react-testing-app1
           yarn test
       - name: Start the app 📤
         run: |
-          cd react-testing-app1
           yarn start &
           npx wait-on --timeout 60000
       - name: Run visual tests 👁
         run: |
-          cd react-testing-app1
           yarn test:visual

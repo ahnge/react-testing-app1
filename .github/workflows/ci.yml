@@ -17,25 +17,18 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies 📦
-        #Using npm ci is generally faster than running npm install
         run: |
           yarn install --frozen-lockfile
       - name: Build the app 🏗
         run: |
           yarn build
       - name: Run component tests 🔸
-        run: |
-          yarn test
-      - name: Start the app 📤
-        run: |
-          yarn start &
-          npx wait-on --timeout 60000
-      - name: Run visual tests 👁
         run: |
           yarn test

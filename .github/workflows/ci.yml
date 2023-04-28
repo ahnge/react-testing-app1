@@ -38,4 +38,4 @@ jobs:
           npx wait-on --timeout 60000
       - name: Run visual tests 👁
         run: |
-          yarn test:visual
+          yarn test
